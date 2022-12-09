@@ -71,4 +71,7 @@ HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
 DEFAULT_TYPE = "default"
 
-HEART_COUNT = 4
+HEART_COUNT = 5
+
+SHIELD_TYPE = "shield"
+
