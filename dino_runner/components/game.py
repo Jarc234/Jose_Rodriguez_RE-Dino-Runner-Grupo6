@@ -1,5 +1,5 @@
 import pygame
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, RUNNING, GAME_OVER, RETRY
 from dino_runner.components.dinosaur.dinosaur import Dinosaur
 from dino_runner.components.obstacle.obstacleManager import ObstacleManager
 from dino_runner.components.score_menu.text_utils import *
@@ -111,10 +111,13 @@ class Game:
         if death_count == 0:
             text, text_rect = get_centered_message('Press any Key to Start')
             self.screen.blit(text, text_rect)
+            self.screen.blit(RUNNING[0], (SCREEN_WIDTH // 2 - 20, SCREEN_HEIGHT // 2 -140))
         elif death_count > 0:
             text, text_rect = get_centered_message('Press any Key to Restart')
             score, score_rect = get_centered_message('Your Score: '+ str(self.points), height = half_screen_height + 50)
             best_score, best_rect = get_centered_message('You Best Score: '+ str(self.best_score), height = half_screen_height + 100 )
+            self.screen.blit(GAME_OVER, (SCREEN_WIDTH // 2 - 185, SCREEN_HEIGHT // 2 - 140))
+            self.screen.blit(RETRY, (SCREEN_WIDTH // 2 - 20, SCREEN_HEIGHT // 2 + 150))
             self.screen.blit(score, score_rect)
             self.screen.blit(text, text_rect)
             self.screen.blit(best_score, best_rect)

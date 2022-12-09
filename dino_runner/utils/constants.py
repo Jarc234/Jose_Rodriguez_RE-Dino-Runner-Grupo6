@@ -69,12 +69,20 @@ BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
+DINO_DEAD = pygame.image.load(os.path.join(IMG_DIR, 'Dino/DinoDead.png'))
+
 DINO = [
     pygame.image.load(os.path.join(IMG_DIR, 'Cactus/DinoEnemy.png')),
     pygame.image.load(os.path.join(IMG_DIR, 'Cactus/DinoEnemy2.png'))
 ]
 
+GAME_OVER = pygame.image.load(os.path.join(IMG_DIR, 'Other/GameOver.png'))
+
+RETRY = pygame.image.load(os.path.join(IMG_DIR, 'Other/Reset.png'))
+
 DEFAULT_TYPE = "default"
+
+DEAD_TYPE = "dead"
 
 HEART_COUNT = 5
 
