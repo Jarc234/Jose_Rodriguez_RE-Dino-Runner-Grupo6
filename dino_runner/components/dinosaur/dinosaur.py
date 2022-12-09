@@ -23,6 +23,7 @@ class Dinosaur(Sprite):
         self.dino_jump = False
         self.jump_vel = self.JUMP_VEL
         self.setup_state_booleans()
+        self.sound_jump = pygame.mixer.Sound('dino_runner/assets/Other/Salto.ogg')
 
     def setup_state_booleans(self):
         self.has_powerup = False
@@ -43,6 +44,7 @@ class Dinosaur(Sprite):
             self.dino_duck = True
             self.dino_jump = False
         elif user_input[pygame.K_UP] and not self.dino_jump:
+            self.sound_jump.play()
             self.dino_run = False
             self.dino_duck = False
             self.dino_jump = True

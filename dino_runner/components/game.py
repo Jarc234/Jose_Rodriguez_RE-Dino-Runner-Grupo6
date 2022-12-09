@@ -5,6 +5,7 @@ from dino_runner.components.obstacle.obstacleManager import ObstacleManager
 from dino_runner.components.score_menu.text_utils import *
 from dino_runner.components.player_hearts.player_heart_manager import PlayerHeartManager
 from dino_runner.components.powerups.power_up_manager import PowerUpManager
+from dino_runner.components.cloud import Cloud
 
 class Game:
     def __init__(self):
@@ -19,7 +20,9 @@ class Game:
         self.y_pos_bg = 380
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
+        self.cloud = Cloud()
         self.points = 0
+        self.best_score = 0
         self.running = True
         self.death_count = 0
         self.player_heart_manager = PlayerHeartManager()
@@ -54,6 +57,7 @@ class Game:
         self.player.update(user_input)
         self.obstacle_manager.update(self)
         self.power_up_manager.update(self.points, self.game_speed, self.player)
+        self.cloud.update()
 
     def draw(self):
         self.clock.tick(FPS)
@@ -62,6 +66,7 @@ class Game:
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
         self.score()
+        self.cloud.draw(self.screen)
         self.player_heart_manager.draw(self.screen)
         self.power_up_manager.draw(self.screen)
         pygame.display.update()
@@ -82,6 +87,8 @@ class Game:
         if self.points % 100 == 0:
             self.game_speed += 1
 
+        if self.points > self.best_score:
+            self.best_score = self.points
         score, score_rect = get_score_element(self.points)
         self.screen.blit(score, score_rect)
         self.player.check_invincibility(self.screen)
@@ -107,8 +114,10 @@ class Game:
         elif death_count > 0:
             text, text_rect = get_centered_message('Press any Key to Restart')
             score, score_rect = get_centered_message('Your Score: '+ str(self.points), height = half_screen_height + 50)
+            best_score, best_rect = get_centered_message('You Best Score: '+ str(self.best_score), height = half_screen_height + 100 )
             self.screen.blit(score, score_rect)
             self.screen.blit(text, text_rect)
+            self.screen.blit(best_score, best_rect)
 
     def handle_key_events_on_menu(self):
         for event in pygame.event.get():

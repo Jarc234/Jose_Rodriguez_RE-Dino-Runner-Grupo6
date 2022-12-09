@@ -69,6 +69,11 @@ BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
+DINO = [
+    pygame.image.load(os.path.join(IMG_DIR, 'Cactus/DinoEnemy.png')),
+    pygame.image.load(os.path.join(IMG_DIR, 'Cactus/DinoEnemy2.png'))
+]
+
 DEFAULT_TYPE = "default"
 
 HEART_COUNT = 5
